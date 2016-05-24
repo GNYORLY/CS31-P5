@@ -1,0 +1,47 @@
+CS31 Project 5                                            Jeannie Chiem
+
+	For this project, one of the notable obstacles that I overcame was trying to figure out how to include files into the program. I figured out that I should
+only include the header file into the program. Another obstacle that I overcame was getting the program to correctly find and output the correct number of rocks and
+pebbles. To do this, I made the program loop through the cstrings twice to check for rocks first and then pebbles. In order to prevent the program from counting
+multiples of the same letter as pebbles, I created copies of the secret word and probe word that would replace the character that was already counted as a rock or pebble
+with a non-letter character so that it wouldn't be read again. The rest of the program was quite simple so I didn't have much problems with it.
+
+DESIGN(PSUEDOCODE)
+
+int manageOneRound
+	while probe word and secret word are not equal
+		 if probe word is not between 4 and 6 chars or if it is not a lower case letter
+				continue;
+		repeatedly, check words in array
+			if probe word equals a word in the array
+				repeatedly, check character in the secret word
+					repeatedly, check characters in probe word
+						if character in probe word equals character in secret word and are both in the same position
+								add one rock
+								change probe and secret word character at current position to '0' and '1' repectively
+				repeatedly, check characters in the secret word
+					repeatedly, check characters in probe word
+						if character in probe word equals character in secret word and are not in the same position
+							add one pebble
+							change probe character at current position to '2'
+							break;
+				if probe word does not equal secret word
+					output rocks and pebbles
+				add 1 to roundScore
+				break;
+			otherwise, if probe word does not equal any word in the array
+				output that the word is not known
+	return roundScore;
+
+int main
+	output asks how many rounds to play
+	input rounds
+	if less than 1
+		return 1;
+	repeatedly for the number of rounds inputted,
+		randomly generate a secret word
+		output length of secret word
+		call manageOneRound function
+		output round score
+		average tries is equal to the current total number of tries divided by the round number
+		output average tries, minimum tries, and maximum tries
